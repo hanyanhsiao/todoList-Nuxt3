@@ -1,4 +1,4 @@
-import { createI18n } from 'vue-i18n'
+import { createI18n } from 'vue-i18n';
 
 const messages = {
   en: {
@@ -36,6 +36,8 @@ const messages = {
     all: 'All',
     incomplete: 'Incomplete',
     uncategorized: 'Uncategorized',
+    loading: 'Loading...',
+    retry: 'Retry',
   },
   zh: {
     title: '待辦事項管理',
@@ -72,16 +74,18 @@ const messages = {
     all: '全部',
     incomplete: '未完成',
     uncategorized: '未分類',
-  }
-}
+    loading: '載入中...',
+    retry: '重試',
+  },
+};
 
 export default defineNuxtPlugin(({ vueApp }) => {
   const i18n = createI18n({
     legacy: false,
     globalInjection: true,
     locale: 'en',
-    messages
-  })
+    messages,
+  });
 
-  vueApp.use(i18n)
-})
+  vueApp.use(i18n);
+});

@@ -1,0 +1,48 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "title": "學習 Nuxt 3",
+      "description": "深入了解 Nuxt 3 的新功能",
+      "completed": true,
+      "category": "study",
+      "createdAt": "2025-08-17T10:00:00.000Z",
+      "updatedAt": "2025-08-17T13:09:43.424Z"
+    },
+    {
+      "id": "2",
+      "title": "完成專案文檔",
+      "description": "撰寫 API 整合文檔",
+      "completed": true,
+      "category": "work",
+      "createdAt": "2025-08-17T11:00:00.000Z",
+      "updatedAt": "2025-08-17T13:13:55.145Z"
+    },
+    {
+      "id": "3",
+      "title": "購買生活用品",
+      "description": "採購日常所需用品",
+      "completed": false,
+      "category": "personal",
+      "createdAt": "2025-08-17T12:00:00.000Z",
+      "updatedAt": "2025-08-17T12:00:00.000Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "work",
+      "name": "work",
+      "color": "#3b82f6"
+    },
+    {
+      "id": "personal",
+      "name": "personal",
+      "color": "#10b981"
+    },
+    {
+      "id": "study",
+      "name": "study",
+      "color": "#f59e0b"
+    }
+  ]
+}

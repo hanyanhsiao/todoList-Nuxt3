@@ -7,10 +7,13 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "api": "json-server --watch db.json --port 3002",
+    "dev:full": "npm run api & npm run dev"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "json-server": "^1.0.0-beta.3",
     "nuxt": "^3.11.0"
   },
   "dependencies": {
