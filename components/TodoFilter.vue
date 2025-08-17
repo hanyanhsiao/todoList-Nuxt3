@@ -1,11 +1,11 @@
 <template>
   <div class="todo-filter-container card">
     <div class="filter-section">
-      <h3 class="card-title">篩選條件</h3>
+      <h3 class="card-title">{{ t('filterTodos') }}</h3>
 
       <!-- 狀態篩選 -->
       <div class="filter-group">
-        <label class="form-label">狀態:</label>
+        <label class="form-label">{{ t('filterTodos') }}:</label>
         <div class="filter-buttons">
           <button
             v-for="filter in filterOptions"
@@ -13,14 +13,14 @@
             :class="['filter-btn', { active: currentFilter === filter.value }]"
             @click="$emit('updateFilter', filter.value)"
           >
-            {{ filter.label }}
+            {{ t(filter.label) }}
           </button>
         </div>
       </div>
 
       <!-- 分類篩選 -->
       <div class="filter-group">
-        <label class="form-label">分類:</label>
+        <label class="form-label">{{ t('category') }}:</label>
         <select
           :value="currentCategory"
           @change="
@@ -28,27 +28,27 @@
           "
           class="form-input category-filter"
         >
-          <option value="all">全部分類</option>
+          <option value="all">{{ t('allCategories') }}</option>
           <option
             v-for="category in categories"
             :key="category.id"
             :value="category.id"
           >
-            {{ category.name }}
+            {{ t(category.id) }}
           </option>
         </select>
       </div>
 
       <!-- 搜尋 -->
       <div class="filter-group">
-        <label class="form-label">搜尋:</label>
+        <label class="form-label">{{ t('search') }}:</label>
         <input
           :value="searchQuery"
           @input="
             $emit('updateSearch', ($event.target as HTMLInputElement).value)
           "
           type="text"
-          placeholder="搜尋待辦事項..."
+          :placeholder="t('searchPlaceholder')"
           class="form-input search-input"
         />
       </div>
@@ -58,22 +58,25 @@
     <div class="stats-section">
       <div class="stat-item">
         <span class="stat-number">{{ stats.total }}</span>
-        <span class="stat-label">總計</span>
+        <span class="stat-label">{{ t('total') }}</span>
       </div>
       <div class="stat-item">
         <span class="stat-number">{{ stats.pending }}</span>
-        <span class="stat-label">未完成</span>
+        <span class="stat-label">{{ t('pending') }}</span>
       </div>
       <div class="stat-item">
         <span class="stat-number">{{ stats.completed }}</span>
-        <span class="stat-label">已完成</span>
+        <span class="stat-label">{{ t('completed') }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import type { Category, FilterType } from '~/types';
+
+const { t } = useI18n();
 
 interface Props {
   categories: Category[];
@@ -97,9 +100,9 @@ defineProps<Props>();
 defineEmits<Emits>();
 
 const filterOptions = [
-  { value: 'all' as FilterType, label: '全部' },
-  { value: 'pending' as FilterType, label: '未完成' },
-  { value: 'completed' as FilterType, label: '已完成' },
+  { value: 'all' as FilterType, label: 'all' },
+  { value: 'pending' as FilterType, label: 'pending' },
+  { value: 'completed' as FilterType, label: 'completed' },
 ];
 </script>
 

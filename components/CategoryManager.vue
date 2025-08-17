@@ -1,6 +1,6 @@
 <template>
   <div class="category-manager card">
-    <h3 class="card-title">分類管理</h3>
+    <h3 class="card-title">{{ $t('categoryManager') }}</h3>
 
     <!-- 新增分類表單 -->
     <form @submit.prevent="handleAddCategory" class="add-category-form">
@@ -8,7 +8,7 @@
         <input
           v-model="newCategoryName"
           type="text"
-          placeholder="分類名稱"
+          :placeholder="$t('categoryName')"
           class="form-input category-input"
           required
         />
@@ -16,14 +16,14 @@
           v-model="newCategoryColor"
           type="color"
           class="color-picker"
-          title="選擇顏色"
+          :title="$t('categoryColor')"
         />
         <button
           type="submit"
           class="btn btn-primary add-btn"
           :disabled="!newCategoryName.trim()"
         >
-          新增
+          {{ $t('addCategory') }}
         </button>
       </div>
     </form>
@@ -40,14 +40,16 @@
             class="category-color"
             :style="{ backgroundColor: category.color }"
           ></div>
-          <span class="category-name">{{ category.name }}</span>
+          <span class="category-name"
+            >{{ getCategoryDisplayName(category) }}aaa</span
+          >
         </div>
 
         <div class="category-actions">
           <button
             @click="startEditCategory(category)"
             class="action-btn edit-btn"
-            title="編輯"
+            :title="$t('edit')"
           >
             <svg viewBox="0 0 24 24">
               <path
@@ -59,7 +61,7 @@
           <button
             @click="$emit('deleteCategory', category.id)"
             class="action-btn delete-btn"
-            title="刪除"
+            :title="$t('delete')"
             :disabled="!canDeleteCategory(category.id)"
           >
             <svg viewBox="0 0 24 24">
@@ -114,6 +116,10 @@
 import { ref, computed } from 'vue';
 import type { Category } from '~/types';
 
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
+
 interface Props {
   categories: Category[];
   todosCount: Record<string, number>;
@@ -136,6 +142,16 @@ const editCategoryName = ref('');
 const editCategoryColor = ref('');
 
 const predefinedCategories = ['work', 'personal', 'study'];
+
+// 判斷是否為預定義分類並取得顯示名稱
+const getCategoryDisplayName = (category: Category) => {
+  if (predefinedCategories.includes(category.id)) {
+    // 對於預定義分類，直接使用 category.id 作為翻譯鍵
+    return t(category.id);
+  }
+  // 對於用戶自定義分類，直接顯示 category.name
+  return category.name;
+};
 
 const editableCategories = computed(() => {
   return props.categories.filter(

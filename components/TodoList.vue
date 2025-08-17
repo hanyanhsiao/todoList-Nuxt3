@@ -1,8 +1,8 @@
 <template>
   <div class="todo-list-container card">
     <div v-if="todos.length === 0" class="empty-state">
-      <h3>沒有待辦事項</h3>
-      <p>開始新增你的第一個待辦事項吧！</p>
+      <h3>{{ t('noTodos') }}</h3>
+      <p>{{ t('startAddingTodos') }}</p>
     </div>
 
     <div v-else class="todo-list">
@@ -20,8 +20,11 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
 import TodoItem from './TodoItem.vue';
 import type { TodoItem as TodoItemType, Category } from '~/types';
+
+const { t } = useI18n();
 
 interface Props {
   todos: TodoItemType[];

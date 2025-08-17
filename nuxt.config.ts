@@ -1,5 +1,4 @@
 export default defineNuxtConfig({
-  compatibilityDate: '2025-08-17',
   devtools: { enabled: true },
   ssr: false, // 暫時禁用 SSR 以避免 localStorage 問題
   css: ['~/assets/styles/common.css'],

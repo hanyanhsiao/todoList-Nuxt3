@@ -1,14 +1,14 @@
 <template>
   <div class="todo-input-container card">
-    <h3 class="card-title">新增待辦事項</h3>
+    <h3 class="card-title">{{ t('addTodo') }}</h3>
     <form @submit.prevent="handleSubmit" class="todo-form">
       <div>
-        <label for="todo-title" class="form-label">待辦事項:</label>
+        <label for="todo-title" class="form-label">{{ t('todoTitle') }}:</label>
         <div class="input-group">
           <input
             v-model="title"
             type="text"
-            placeholder="新增待辦事項..."
+            :placeholder="t('addTodoPlaceholder')"
             class="form-input"
             required
           />
@@ -18,18 +18,20 @@
               :key="category.id"
               :value="category.id"
             >
-              {{ category.name }}
+              {{ getCategoryDisplayName(category) }}
             </option>
           </select>
         </div>
       </div>
       <div>
-        <label for="todo-description" class="form-label">詳細描述:</label>
+        <label for="todo-description" class="form-label"
+          >{{ t('todoDescription') }}:</label
+        >
         <div class="input-group">
           <textarea
             id="todo-description"
             v-model="description"
-            placeholder="詳細描述 (選填)"
+            :placeholder="t('descriptionPlaceholder')"
             class="form-input description-input"
             rows="5"
           ></textarea>
@@ -41,7 +43,7 @@
         class="btn btn-primary add-button"
         :disabled="!title.trim()"
       >
-        新增
+        {{ t('addTodo') }}
       </button>
     </form>
   </div>
@@ -49,7 +51,10 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import type { Category, TodoItem } from '~/types';
+
+const { t } = useI18n();
 
 interface Props {
   categories: Category[];
@@ -65,6 +70,15 @@ const emit = defineEmits<Emits>();
 const title = ref('');
 const description = ref('');
 const selectedCategory = ref('personal');
+
+const predefinedCategoryKeys = ['work', 'personal', 'study'];
+
+const getCategoryDisplayName = (category: Category) => {
+  if (predefinedCategoryKeys.includes(category.id)) {
+    return t(category.id);
+  }
+  return category.name;
+};
 
 const handleSubmit = () => {
   if (!title.value.trim()) return;

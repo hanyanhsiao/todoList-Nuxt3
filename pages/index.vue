@@ -1,10 +1,20 @@
 <template>
   <div>
     <header class="app-header">
-      <h1>待辦事項管理</h1>
-      <button @click="toggleCategoryManager" class="settings-btn">
-        {{ showCategoryManager ? '隱藏' : '管理' }}分類
-      </button>
+      <h1>{{ $t('title') }}</h1>
+      <div class="header-controls">
+        <button @click="toggleCategoryManager" class="settings-btn">
+          {{ showCategoryManager ? $t('hide') : $t('manage')
+          }}{{ $t('category') }}
+        </button>
+        <button
+          @click="toggleLanguage"
+          class="language-btn"
+          :title="locale === 'zh' ? 'Switch to English' : '切換到中文'"
+        >
+          {{ locale === 'zh' ? 'EN' : '中文' }}
+        </button>
+      </div>
     </header>
 
     <main class="main-content">
@@ -50,6 +60,10 @@
 <script setup lang="ts">
 import type { Category } from '~/types';
 
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n();
+
 const {
   state,
   searchQuery,
@@ -66,6 +80,7 @@ const {
 } = useTodos();
 
 const showCategoryManager = ref(false);
+
 
 const todosCountByCategory = computed(() => {
   return state.todos.reduce((count, todo) => {
@@ -86,6 +101,10 @@ const updateCategory = (id: string, updates: Partial<Category>) => {
 
 const toggleCategoryManager = () => {
   showCategoryManager.value = !showCategoryManager.value;
+};
+
+const toggleLanguage = () => {
+  locale.value = locale.value === 'zh' ? 'en' : 'zh';
 };
 </script>
 
@@ -111,7 +130,14 @@ const toggleCategoryManager = () => {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.settings-btn {
+.header-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.settings-btn,
+.language-btn {
   padding: 8px 16px;
   background: rgba(255, 255, 255, 0.2);
   color: white;
@@ -123,9 +149,15 @@ const toggleCategoryManager = () => {
   backdrop-filter: blur(10px);
 }
 
-.settings-btn:hover {
+.settings-btn:hover,
+.language-btn:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: translateY(-1px);
+}
+
+.language-btn {
+  min-width: 50px;
+  font-weight: 600;
 }
 
 .main-content {
@@ -145,6 +177,10 @@ const toggleCategoryManager = () => {
 
   .app-header h1 {
     font-size: 24px;
+  }
+
+  .header-controls {
+    order: 2;
   }
 
   .main-content {

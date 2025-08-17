@@ -59,7 +59,10 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import type { TodoItem, Category } from '~/types';
+
+const { t } = useI18n();
 
 interface Props {
   todo: TodoItem;
@@ -79,7 +82,7 @@ const categoryName = computed(() => {
   const category = props.categories.find(
     (cat) => cat.id === props.todo.category
   );
-  return category?.name || '未分類';
+  return category?.name ? t(category.id) : t('uncategorized');
 });
 
 const categoryColor = computed(() => {

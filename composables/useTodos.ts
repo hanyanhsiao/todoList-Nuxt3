@@ -1,15 +1,18 @@
 import { reactive, ref, computed, onMounted } from 'vue';
+import { useI18n } from 'vue-i18n';
 import type { TodoItem, Category, FilterType, TodoState } from '~/types';
 
 const STORAGE_KEY = 'vue3-todo-app';
 
 export function useTodos() {
+  const { t } = useI18n();
+
   const state = reactive<TodoState>({
     todos: [],
     categories: [
-      { id: 'work', name: '工作', color: '#3b82f6' },
-      { id: 'personal', name: '個人', color: '#10b981' },
-      { id: 'study', name: '學習', color: '#f59e0b' },
+      { id: 'work', name: 'work', color: '#3b82f6' }, // 使用 i18n key
+      { id: 'personal', name: 'personal', color: '#10b981' },
+      { id: 'study', name: 'study', color: '#f59e0b' },
     ],
     filter: 'all',
     selectedCategory: 'all',
