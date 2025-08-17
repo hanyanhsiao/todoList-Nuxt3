@@ -145,55 +145,60 @@ const formatDate = (date: Date) => {
 // };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '~/assets/styles/variables';
+@import '~/assets/styles/mixins';
+
 .todo-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 16px;
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  transition: all 0.2s;
-}
+  @include flex-start;
+  gap: spacing(md);
+  padding: spacing(md);
+  background: color(white);
+  border: 1px solid color(gray-200);
+  border-radius: border-radius(large);
+  transition: all transition(normal);
 
-.todo-item:hover {
-  border-color: #d1d5db;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
+  &:hover {
+    border-color: color(gray-300);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
 
-.todo-item.completed {
-  opacity: 0.7;
+  &.completed {
+    opacity: 0.7;
+
+    .title {
+      text-decoration: line-through;
+      color: color(gray-400);
+    }
+  }
 }
 
 .checkbox {
   flex-shrink: 0;
   width: 20px;
   height: 20px;
-  border: 2px solid #d1d5db;
-  border-radius: 4px;
-  background: white;
+  border: 2px solid color(gray-300);
+  border-radius: border-radius(small);
+  background: color(white);
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-  padding: 0px;
-}
+  @include flex-center;
+  transition: all transition(normal);
+  padding: 0;
 
-.checkbox:hover {
-  border-color: #3b82f6;
-}
+  &:hover {
+    border-color: color(primary);
+  }
 
-.checkbox.checked {
-  background: #3b82f6;
-  border-color: #3b82f6;
+  &.checked {
+    background: color(primary);
+    border-color: color(primary);
+  }
 }
 
 .check-icon {
   width: 12px;
   height: 12px;
-  fill: white;
+  fill: color(white);
 }
 
 .content {
@@ -202,84 +207,74 @@ const formatDate = (date: Date) => {
 }
 
 .title {
-  font-weight: 500;
-  color: #374151;
-  margin-bottom: 4px;
+  font-weight: font-weight(medium);
+  color: color(gray-700);
+  margin-bottom: spacing(xs);
   line-height: 1.4;
 }
 
-.completed .title {
-  text-decoration: line-through;
-  color: #9ca3af;
-}
-
 .description {
-  font-size: 14px;
-  color: #6b7280;
-  margin-bottom: 8px;
+  font-size: font-size(sm);
+  color: color(gray-500);
+  margin-bottom: spacing(sm);
   line-height: 1.4;
 }
 
 .meta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 12px;
+  @include flex-start;
+  gap: spacing(md);
+  font-size: font-size(xs);
 }
 
 .category {
-  padding: 2px 8px;
+  padding: 2px spacing(sm);
   border-radius: 12px;
-  color: white;
-  font-weight: 500;
+  color: color(white);
+  font-weight: font-weight(medium);
 }
 
 .date {
-  color: #9ca3af;
+  color: color(gray-400);
 }
 
 .edit-form {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  @include flex-column;
+  gap: spacing(sm);
 }
 
 .edit-input {
-  padding: 8px 12px;
-  border: 2px solid #3b82f6;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
+  padding: spacing(sm) spacing(md);
+  border: 2px solid color(primary);
+  border-radius: border-radius(small);
+  font-size: font-size(sm);
+  font-weight: font-weight(medium);
 }
 
 .edit-description {
-  padding: 8px 12px;
-  border: 2px solid #e5e7eb;
-  border-radius: 4px;
-  font-size: 14px;
+  padding: spacing(sm) spacing(md);
+  border: 2px solid color(gray-200);
+  border-radius: border-radius(small);
+  font-size: font-size(sm);
   font-family: inherit;
   resize: vertical;
 }
 
 .edit-category {
-  padding: 8px 12px;
-  border: 2px solid #e5e7eb;
-  border-radius: 4px;
-  font-size: 14px;
-  background: white;
+  padding: spacing(sm) spacing(md);
+  border: 2px solid color(gray-200);
+  border-radius: border-radius(small);
+  font-size: font-size(sm);
+  background: color(white);
 }
 
 .actions {
   flex-shrink: 0;
-  display: flex;
-  gap: 4px;
+  @include flex-start;
+  gap: spacing(xs);
 }
 
-/* 使用共用的 action-btn 和 btn-danger 樣式 */
-
 .delete-btn {
-  width: 32px;
-  height: 32px;
+  @include action-button;
 }
 </style>

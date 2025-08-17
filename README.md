@@ -18,6 +18,7 @@
 - Nuxt 3
 - Vue 3
 - TypeScript
+- SCSS/Sass (變數和混合)
 - JSON Server (模擬 API)
 - Vite (內建於 Nuxt 3)
 
@@ -84,8 +85,10 @@ npm run generate
 
 ```
 ├── assets/
-│   └── styles/         # 樣式文件
-│       └── common.css
+│   └── styles/         # SCSS 樣式文件
+│       ├── _variables.scss    # SCSS 變數定義
+│       ├── _mixins.scss       # SCSS 混合(Mixins)
+│       └── common.scss        # 共用樣式和工具類
 ├── components/         # Vue 組件 (自動匯入)
 │   ├── CategoryManager.vue
 │   ├── TodoFilter.vue
@@ -172,3 +175,50 @@ interface Category {
 
 - 內建伺服器端渲染支援
 - 更好的 SEO 和初始載入性能
+
+### 5. SCSS 架構
+
+- **變數系統**：`_variables.scss` 定義了顏色、間距、字體等設計 token
+- **混合(Mixins)**：`_mixins.scss` 提供可重用的樣式模式
+- **響應式設計**：內建斷點混合，支援行動優先設計
+- **實用工具類**：預定義的間距、文字對齊等工具類
+
+#### SCSS 變數範例
+
+```scss
+// 顏色
+$colors: (
+  primary: #3b82f6,
+  secondary: #f3f4f6,
+  danger: #dc2626,
+  // ...
+);
+
+// 間距
+$spacing: (
+  xs: 4px,
+  sm: 8px,
+  md: 16px,
+  lg: 24px,
+  // ...
+);
+```
+
+#### 混合(Mixins)範例
+
+```scss
+// 卡片樣式
+@include card-base;
+
+// 按鈕變體
+@include button-variant(color(primary), color(white), color(primary-hover));
+
+// Flex 佈局
+@include flex-center;
+@include flex-between;
+
+// 響應式
+@include mobile {
+  // 行動裝置樣式
+}
+```

@@ -129,60 +129,59 @@ const toggleLanguage = () => {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '~/assets/styles/variables';
+@import '~/assets/styles/mixins';
+
 .app-header {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  padding: 20px 0;
+  padding: spacing(lg) 0;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-between;
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px 24px;
-}
+  padding: spacing(lg) spacing(lg);
 
-.app-header h1 {
-  color: white;
-  font-size: 28px;
-  font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  h1 {
+    color: color(white);
+    font-size: 28px;
+    font-weight: font-weight(bold);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .header-controls {
-  display: flex;
-  gap: 12px;
-  align-items: center;
+  @include flex-start;
+  gap: spacing(md);
 }
 
 .settings-btn,
 .language-btn {
-  padding: 8px 16px;
+  padding: spacing(sm) spacing(md);
   background: rgba(255, 255, 255, 0.2);
-  color: white;
+  color: color(white);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 20px;
-  font-size: 14px;
+  font-size: font-size(sm);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all transition(normal);
   backdrop-filter: blur(10px);
-}
 
-.settings-btn:hover,
-.language-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateY(-1px);
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+  }
 }
 
 .language-btn {
   min-width: 50px;
-  font-weight: 600;
+  font-weight: font-weight(semibold);
 }
 
 .main-content {
-  padding: 40px 24px;
+  padding: 40px spacing(lg);
 }
 
 .container {
@@ -192,14 +191,19 @@ const toggleLanguage = () => {
 
 .loading {
   text-align: center;
-  padding: 60px 20px;
+  padding: 60px spacing(lg);
   color: rgba(255, 255, 255, 0.8);
+
+  p {
+    font-size: font-size(base);
+    margin: 0;
+  }
 }
 
 .loading-spinner {
   width: 40px;
   height: 40px;
-  margin: 0 auto 20px;
+  margin: 0 auto spacing(lg);
   border: 3px solid rgba(255, 255, 255, 0.3);
   border-top: 3px solid rgba(255, 255, 255, 0.8);
   border-radius: 50%;
@@ -215,50 +219,45 @@ const toggleLanguage = () => {
   }
 }
 
-.loading p {
-  font-size: 16px;
-  margin: 0;
-}
-
 .error {
   text-align: center;
-  padding: 40px 20px;
+  padding: 40px spacing(lg);
   background: rgba(220, 38, 38, 0.1);
   border: 1px solid rgba(220, 38, 38, 0.3);
-  border-radius: 12px;
-  margin-bottom: 24px;
-}
+  border-radius: border-radius(xlarge);
+  margin-bottom: spacing(lg);
 
-.error p {
-  color: #fca5a5;
-  font-size: 16px;
-  margin-bottom: 16px;
+  p {
+    color: #fca5a5;
+    font-size: font-size(base);
+    margin-bottom: spacing(md);
+  }
 }
 
 .retry-btn {
-  padding: 10px 20px;
+  padding: 10px spacing(lg);
   background: rgba(220, 38, 38, 0.2);
   color: #fca5a5;
   border: 1px solid rgba(220, 38, 38, 0.3);
-  border-radius: 8px;
+  border-radius: border-radius(large);
   cursor: pointer;
-  font-size: 14px;
-  transition: all 0.2s;
+  font-size: font-size(sm);
+  transition: all transition(normal);
+
+  &:hover {
+    background: rgba(220, 38, 38, 0.3);
+    transform: translateY(-1px);
+  }
 }
 
-.retry-btn:hover {
-  background: rgba(220, 38, 38, 0.3);
-  transform: translateY(-1px);
-}
-
-@media (max-width: 768px) {
+@include tablet {
   .app-header {
     flex-direction: column;
-    gap: 12px;
-  }
+    gap: spacing(md);
 
-  .app-header h1 {
-    font-size: 24px;
+    h1 {
+      font-size: font-size(xxl);
+    }
   }
 
   .header-controls {
@@ -266,7 +265,7 @@ const toggleLanguage = () => {
   }
 
   .main-content {
-    padding: 24px 16px;
+    padding: spacing(lg) spacing(md);
   }
 }
 </style>

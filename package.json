@@ -14,7 +14,8 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "json-server": "^1.0.0-beta.3",
-    "nuxt": "^3.11.0"
+    "nuxt": "^3.11.0",
+    "sass": "^1.90.0"
   },
   "dependencies": {
     "vue-i18n": "^9.6.2"

@@ -1,0 +1,111 @@
+// 顏色變數
+$colors: (
+  primary: #3b82f6,
+  primary-hover: #2563eb,
+  secondary: #f3f4f6,
+  secondary-hover: #e5e7eb,
+  danger: #dc2626,
+  danger-hover: #b91c1c,
+  danger-bg: #fef2f2,
+  danger-bg-hover: #fee2e2,
+  gray-50: #f9fafb,
+  gray-100: #f3f4f6,
+  gray-200: #e5e7eb,
+  gray-300: #d1d5db,
+  gray-400: #9ca3af,
+  gray-500: #6b7280,
+  gray-700: #374151,
+  gray-900: #111827,
+  white: #ffffff,
+  black: #000000,
+);
+
+// 陰影變數
+$shadows: (
+  light: 0 2px 8px rgba(0, 0, 0, 0.1),
+  medium: 0 4px 12px rgba(0, 0, 0, 0.15),
+  heavy: 0 8px 25px rgba(0, 0, 0, 0.2),
+);
+
+// 尺寸變數
+$spacing: (
+  xs: 4px,
+  sm: 8px,
+  md: 16px,
+  lg: 24px,
+  xl: 32px,
+  xxl: 48px,
+);
+
+$border-radius: (
+  small: 4px,
+  medium: 6px,
+  large: 8px,
+  xlarge: 12px,
+);
+
+$font-sizes: (
+  xs: 12px,
+  sm: 14px,
+  base: 16px,
+  lg: 18px,
+  xl: 20px,
+  xxl: 24px,
+);
+
+$font-weights: (
+  normal: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+);
+
+// 斷點變數
+$breakpoints: (
+  mobile: 480px,
+  tablet: 768px,
+  desktop: 1024px,
+  wide: 1200px,
+);
+
+// 過渡動畫
+$transitions: (
+  fast: 0.15s ease-out,
+  normal: 0.2s ease-out,
+  slow: 0.3s ease-out,
+);
+
+// Helper 函數 - 使用現代語法
+@use 'sass:map';
+
+@function color($name) {
+  @return map.get($colors, $name);
+}
+
+@function shadow($name) {
+  @return map.get($shadows, $name);
+}
+
+@function spacing($name) {
+  @return map.get($spacing, $name);
+}
+
+@function border-radius($name) {
+  @return map.get($border-radius, $name);
+}
+
+@function font-size($name) {
+  @return map.get($font-sizes, $name);
+}
+
+@function font-weight($name) {
+  @return map.get($font-weights, $name);
+}
+
+@function breakpoint($name) {
+  @return map.get($breakpoints, $name);
+}
+
+@function transition($name) {
+  @return map.get($transitions, $name);
+}

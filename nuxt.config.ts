@@ -1,7 +1,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false, // 暫時禁用 SSR 以避免 localStorage 問題
-  css: ['~/assets/styles/common.css'],
+  css: ['~/assets/styles/common.scss'],
   typescript: {
     typeCheck: true,
   },

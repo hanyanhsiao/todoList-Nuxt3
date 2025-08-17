@@ -41,49 +41,51 @@ defineProps<Props>();
 defineEmits<Emits>();
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '~/assets/styles/variables';
+@import '~/assets/styles/mixins';
+
 .todo-list-container {
   overflow: hidden;
   padding: 0;
 }
 
 .empty-state {
-  padding: 60px 24px;
+  padding: 60px spacing(lg);
   text-align: center;
-  color: #6b7280;
+  color: color(gray-500);
+
+  h3 {
+    margin: 0 0 spacing(sm) 0;
+    font-size: font-size(xl);
+    font-weight: font-weight(semibold);
+    color: color(gray-700);
+  }
+
+  p {
+    margin: 0;
+    font-size: font-size(base);
+  }
 }
 
 .empty-icon {
   font-size: 48px;
-  margin-bottom: 16px;
-}
-
-.empty-state h3 {
-  margin: 0 0 8px 0;
-  font-size: 20px;
-  font-weight: 600;
-  color: #374151;
-}
-
-.empty-state p {
-  margin: 0;
-  font-size: 16px;
+  margin-bottom: spacing(md);
 }
 
 .todo-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 24px;
-}
+  @include flex-column;
+  gap: spacing(lg);
+  padding: spacing(lg);
 
-.todo-list > :first-child {
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-}
+  > :first-child {
+    border-top-left-radius: border-radius(xlarge);
+    border-top-right-radius: border-radius(xlarge);
+  }
 
-.todo-list > :last-child {
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+  > :last-child {
+    border-bottom-left-radius: border-radius(xlarge);
+    border-bottom-right-radius: border-radius(xlarge);
+  }
 }
 </style>

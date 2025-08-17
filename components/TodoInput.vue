@@ -43,7 +43,7 @@
         class="btn btn-primary add-button"
         :disabled="!title.trim()"
       >
-        {{ t('addTodo') }}
+        {{ t('addCategory') }}
       </button>
     </form>
   </div>
@@ -96,18 +96,18 @@ const handleSubmit = () => {
 };
 </script>
 
-<style scoped>
-/* 所有樣式都使用共用 CSS */
+<style scoped lang="scss">
+@import '~/assets/styles/variables';
+@import '~/assets/styles/mixins';
 
 .todo-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  @include flex-column;
+  gap: spacing(md);
 }
 
 .input-group {
-  display: flex;
-  gap: 12px;
+  @include flex-start;
+  gap: spacing(md);
 }
 
 .form-input {
@@ -115,12 +115,9 @@ const handleSubmit = () => {
 }
 
 .category-select {
-  padding: 12px 16px;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
-  font-size: 16px;
-  background: white;
-  min-width: 120px;
+  @include form-input-base;
+  max-width: 120px;
+  background: color(white);
 }
 
 .description-input {
@@ -130,7 +127,7 @@ const handleSubmit = () => {
 
 .add-button {
   align-self: flex-start;
-  padding: 12px 24px;
-  font-size: 16px;
+  padding: spacing(md) spacing(lg);
+  font-size: font-size(base);
 }
 </style>

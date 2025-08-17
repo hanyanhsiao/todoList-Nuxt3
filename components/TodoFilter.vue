@@ -5,7 +5,7 @@
 
       <!-- 狀態篩選 -->
       <div class="filter-group">
-        <label class="form-label">{{ t('filterTodos') }}:</label>
+        <label class="form-label">{{ t('status') }}:</label>
         <div class="filter-buttons">
           <button
             v-for="filter in filterOptions"
@@ -106,54 +106,63 @@ const filterOptions = [
 ];
 </script>
 
-<style scoped>
-/* 使用共用 CSS */
+<style scoped lang="scss">
+@import '~/assets/styles/variables';
+@import '~/assets/styles/mixins';
 
 .filter-group {
-  margin-bottom: 16px;
+  margin-bottom: spacing(md);
 }
 
 .filter-buttons {
-  display: flex;
-  gap: 8px;
+  @include flex-start;
+  gap: spacing(sm);
+  flex-wrap: wrap;
+
+  @include mobile {
+    justify-content: center;
+  }
 }
 
 .category-filter {
   width: 100%;
-  font-size: 14px;
-  border-radius: 6px;
+  font-size: font-size(sm);
+  border-radius: border-radius(medium);
 }
 
 .search-input {
   width: 100%;
-  font-size: 14px;
-  border-radius: 6px;
+  font-size: font-size(sm);
+  border-radius: border-radius(medium);
 }
 
 .stats-section {
-  display: flex;
-  gap: 24px;
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid #e5e7eb;
+  @include flex-start;
+  gap: spacing(lg);
+  margin-top: spacing(lg);
+  padding-top: spacing(lg);
+  border-top: 1px solid color(gray-200);
+
+  @include mobile {
+    gap: spacing(md);
+  }
 }
 
 .stat-item {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   align-items: center;
-  gap: 4px;
+  gap: spacing(xs);
 }
 
 .stat-number {
-  font-size: 24px;
-  font-weight: 700;
-  color: #3b82f6;
+  font-size: font-size(xxl);
+  font-weight: font-weight(bold);
+  color: color(primary);
 }
 
 .stat-label {
-  font-size: 12px;
-  color: #6b7280;
+  font-size: font-size(xs);
+  color: color(gray-500);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }

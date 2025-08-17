@@ -1,0 +1,183 @@
+// 導入變數和混合
+@import 'variables';
+@import 'mixins';
+
+// 共用卡片樣式
+.card {
+  @include card-base;
+}
+
+// 共用標題樣式
+.card-title {
+  margin: 0 0 spacing(lg) 0;
+  color: color(gray-700);
+  font-size: font-size(lg);
+  font-weight: font-weight(semibold);
+}
+
+// 共用輸入框樣式
+.form-input {
+  @include form-input-base;
+}
+
+// 共用按鈕樣式
+.btn {
+  @include button-base;
+}
+
+.btn-primary {
+  @include button-variant(color(primary), color(white), color(primary-hover));
+}
+
+.btn-secondary {
+  @include button-variant(
+    color(secondary),
+    color(gray-500),
+    color(secondary-hover)
+  );
+
+  &:hover {
+    color: color(gray-700);
+  }
+}
+
+.btn-danger {
+  @include button-variant(
+    color(danger-bg),
+    color(danger),
+    color(danger-bg-hover)
+  );
+
+  &:hover:not(:disabled) {
+    color: color(danger-hover);
+  }
+}
+
+// 共用表單群組樣式
+.form-group {
+  margin-bottom: spacing(md);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: spacing(sm);
+  font-weight: font-weight(medium);
+  color: color(gray-700);
+  font-size: font-size(sm);
+}
+
+// 共用動作按鈕樣式
+.action-btn {
+  @include action-button;
+}
+
+// 共用篩選按鈕樣式
+.filter-btn {
+  padding: spacing(sm) spacing(md);
+  border: 2px solid color(gray-200);
+  border-radius: border-radius(medium);
+  background: color(white);
+  color: color(gray-500);
+  font-size: font-size(sm);
+  cursor: pointer;
+  transition: all transition(normal);
+
+  &:hover {
+    border-color: color(gray-300);
+  }
+
+  &.active {
+    border-color: color(primary);
+    background: color(primary);
+    color: color(white);
+  }
+}
+
+// 響應式樣式示例
+@include mobile {
+  .card {
+    padding: spacing(md);
+    margin-bottom: spacing(md);
+  }
+
+  .card-title {
+    font-size: font-size(base);
+  }
+}
+
+@include tablet {
+  .btn {
+    font-size: font-size(xs);
+    padding: spacing(xs) spacing(sm);
+  }
+}
+
+// 實用工具類
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+.mt-1 {
+  margin-top: spacing(xs);
+}
+.mt-2 {
+  margin-top: spacing(sm);
+}
+.mt-3 {
+  margin-top: spacing(md);
+}
+.mt-4 {
+  margin-top: spacing(lg);
+}
+.mt-5 {
+  margin-top: spacing(xl);
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
+.mb-1 {
+  margin-bottom: spacing(xs);
+}
+.mb-2 {
+  margin-bottom: spacing(sm);
+}
+.mb-3 {
+  margin-bottom: spacing(md);
+}
+.mb-4 {
+  margin-bottom: spacing(lg);
+}
+.mb-5 {
+  margin-bottom: spacing(xl);
+}
+
+.p-0 {
+  padding: 0;
+}
+.p-1 {
+  padding: spacing(xs);
+}
+.p-2 {
+  padding: spacing(sm);
+}
+.p-3 {
+  padding: spacing(md);
+}
+.p-4 {
+  padding: spacing(lg);
+}
+.p-5 {
+  padding: spacing(xl);
+}

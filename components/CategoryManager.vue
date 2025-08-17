@@ -202,61 +202,57 @@ const cancelEdit = () => {
 };
 </script>
 
-<style scoped>
-/* 使用共用 CSS */
+<style scoped lang="scss">
+@import '~/assets/styles/variables';
+@import '~/assets/styles/mixins';
 
 .add-category-form {
-  margin-bottom: 20px;
+  margin-bottom: spacing(lg);
 }
 
 .form-row {
-  display: flex;
-  gap: 12px;
-  align-items: center;
+  @include flex-start;
+  gap: spacing(md);
 }
 
 .category-input {
   flex: 1;
-  font-size: 16px;
+  font-size: font-size(base);
 }
 
 .color-picker {
   width: 40px;
   height: 36px;
-  border: 2px solid #e5e7eb;
-  border-radius: 6px;
+  border: 2px solid color(gray-200);
+  border-radius: border-radius(medium);
   cursor: pointer;
 }
 
 .add-btn {
-  padding: 8px 16px;
-  font-size: 14px;
+  padding: spacing(sm) spacing(md);
+  font-size: font-size(sm);
 }
 
 .category-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  @include flex-column;
+  gap: spacing(sm);
 }
 
 .category-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  transition: border-color 0.2s;
-}
+  @include flex-between;
+  padding: spacing(md);
+  border: 1px solid color(gray-200);
+  border-radius: border-radius(medium);
+  transition: border-color transition(normal);
 
-.category-item:hover {
-  border-color: #d1d5db;
+  &:hover {
+    border-color: color(gray-300);
+  }
 }
 
 .category-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  @include flex-start;
+  gap: spacing(md);
 }
 
 .category-color {
@@ -266,55 +262,47 @@ const cancelEdit = () => {
 }
 
 .category-name {
-  font-weight: 500;
-  color: #374151;
+  font-weight: font-weight(medium);
+  color: color(gray-700);
 }
 
 .category-actions {
-  display: flex;
-  gap: 4px;
+  @include flex-start;
+  gap: spacing(xs);
 }
 
 .action-btn {
-  width: 28px;
-  height: 28px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-}
+  @include action-button(28px);
 
-.action-btn svg {
-  width: 14px;
-  height: 14px;
+  svg {
+    width: 14px;
+    height: 14px;
+  }
 }
 
 .edit-btn {
-  background: #f3f4f6;
-  color: #6b7280;
-}
+  @include button-variant(color(gray-100), color(gray-500), color(gray-200));
 
-.edit-btn:hover {
-  background: #e5e7eb;
-  color: #374151;
+  &:hover {
+    color: color(gray-700);
+  }
 }
 
 .delete-btn {
-  background: #fef2f2;
-  color: #dc2626;
-}
+  @include button-variant(
+    color(danger-bg),
+    color(danger),
+    color(danger-bg-hover)
+  );
 
-.delete-btn:hover:not(:disabled) {
-  background: #fee2e2;
-  color: #b91c1c;
-}
+  &:hover:not(:disabled) {
+    color: color(danger-hover);
+  }
 
-.delete-btn:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
 }
 
 .modal-overlay {
@@ -324,94 +312,79 @@ const cancelEdit = () => {
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   z-index: 1000;
 }
 
 .modal-content {
-  background: white;
-  border-radius: 12px;
-  padding: 24px;
+  background: color(white);
+  border-radius: border-radius(xlarge);
+  padding: spacing(lg);
   width: 90%;
   max-width: 400px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
+  box-shadow: shadow(heavy);
 
-.modal-content h4 {
-  margin: 0 0 20px 0;
-  color: #374151;
-  font-size: 18px;
-  font-weight: 600;
+  h4 {
+    margin: 0 0 spacing(lg) 0;
+    color: color(gray-700);
+    font-size: font-size(lg);
+    font-weight: font-weight(semibold);
+  }
 }
 
 .edit-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  @include flex-column;
+  gap: spacing(md);
 }
 
 .form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+  @include flex-column;
+  gap: spacing(sm);
 
-.form-group label {
-  font-weight: 500;
-  color: #374151;
-  font-size: 14px;
+  label {
+    font-weight: font-weight(medium);
+    color: color(gray-700);
+    font-size: font-size(sm);
+  }
 }
 
 .form-input {
-  padding: 8px 12px;
-  border: 2px solid #e5e7eb;
-  border-radius: 6px;
-  font-size: 14px;
+  padding: spacing(sm) spacing(md);
+  border: 2px solid color(gray-200);
+  border-radius: border-radius(medium);
+  font-size: font-size(sm);
+
+  &:focus {
+    outline: none;
+    border-color: color(primary);
+  }
 }
 
 .form-color-picker {
   width: 60px;
   height: 36px;
-  border: 2px solid #e5e7eb;
-  border-radius: 6px;
+  border: 2px solid color(gray-200);
+  border-radius: border-radius(medium);
   cursor: pointer;
 }
 
 .form-actions {
-  display: flex;
-  gap: 12px;
+  @include flex-start;
+  gap: spacing(md);
   justify-content: flex-end;
 }
 
 .cancel-btn {
-  padding: 8px 16px;
-  background: #f3f4f6;
-  color: #6b7280;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
+  @include button-base;
+  @include button-variant(color(gray-100), color(gray-500), color(gray-200));
 
-.cancel-btn:hover {
-  background: #e5e7eb;
+  &:hover {
+    color: color(gray-700);
+  }
 }
 
 .save-btn {
-  padding: 8px 16px;
-  background: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.save-btn:hover {
-  background: #2563eb;
+  @include button-base;
+  @include button-variant(color(primary), color(white), color(primary-hover));
 }
 </style>
