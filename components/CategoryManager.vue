@@ -95,7 +95,11 @@
             />
           </div>
           <div class="form-actions">
-            <button type="button" @click="cancelEdit" class="btn btn-secondary cancel-btn">
+            <button
+              type="button"
+              @click="cancelEdit"
+              class="btn btn-secondary cancel-btn"
+            >
               取消
             </button>
             <button type="submit" class="btn btn-primary save-btn">儲存</button>
@@ -108,7 +112,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
-import type { Category } from '@/types';
+import type { Category } from '~/types';
 
 interface Props {
   categories: Category[];

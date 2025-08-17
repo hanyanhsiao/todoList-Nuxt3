@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import TodoItem from './TodoItem.vue';
-import type { TodoItem as TodoItemType, Category } from '@/types';
+import type { TodoItem as TodoItemType, Category } from '~/types';
 
 interface Props {
   todos: TodoItemType[];

@@ -1,5 +1,5 @@
-import { reactive, ref, computed } from 'vue';
-import type { TodoItem, Category, FilterType, TodoState } from '@/types';
+import { reactive, ref, computed, onMounted } from 'vue';
+import type { TodoItem, Category, FilterType, TodoState } from '~/types';
 
 const STORAGE_KEY = 'vue3-todo-app';
 
@@ -22,29 +22,33 @@ export function useTodos() {
   };
 
   const saveToLocalStorage = () => {
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({
-        todos: state.todos,
-        categories: state.categories,
-      })
-    );
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({
+          todos: state.todos,
+          categories: state.categories,
+        })
+      );
+    }
   };
 
   const loadFromLocalStorage = () => {
-    const data = localStorage.getItem(STORAGE_KEY);
-    if (data) {
-      try {
-        const parsed = JSON.parse(data);
-        state.todos =
-          parsed.todos?.map((todo: any) => ({
-            ...todo,
-            createdAt: new Date(todo.createdAt),
-            updatedAt: new Date(todo.updatedAt),
-          })) || [];
-        state.categories = parsed.categories || state.categories;
-      } catch (error) {
-        console.error('Failed to load data from localStorage:', error);
+    if (typeof window !== 'undefined') {
+      const data = localStorage.getItem(STORAGE_KEY);
+      if (data) {
+        try {
+          const parsed = JSON.parse(data);
+          state.todos =
+            parsed.todos?.map((todo: any) => ({
+              ...todo,
+              createdAt: new Date(todo.createdAt),
+              updatedAt: new Date(todo.updatedAt),
+            })) || [];
+          state.categories = parsed.categories || state.categories;
+        } catch (error) {
+          console.error('Failed to load data from localStorage:', error);
+        }
       }
     }
   };
@@ -145,7 +149,10 @@ export function useTodos() {
     pending: state.todos.filter((todo) => !todo.completed).length,
   }));
 
-  loadFromLocalStorage();
+  // 在客戶端載入資料
+  onMounted(() => {
+    loadFromLocalStorage();
+  });
 
   return {
     state,

@@ -36,7 +36,11 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary add-button" :disabled="!title.trim()">
+      <button
+        type="submit"
+        class="btn btn-primary add-button"
+        :disabled="!title.trim()"
+      >
         新增
       </button>
     </form>
@@ -45,7 +49,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import type { Category, TodoItem } from '@/types';
+import type { Category, TodoItem } from '~/types';
 
 interface Props {
   categories: Category[];

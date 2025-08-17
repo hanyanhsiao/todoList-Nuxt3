@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <header class="app-header">
       <h1>待辦事項管理</h1>
       <button @click="toggleCategoryManager" class="settings-btn">
@@ -48,13 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { useTodos } from '@/composables/useTodos';
-import TodoInput from '@/components/TodoInput.vue';
-import TodoFilter from '@/components/TodoFilter.vue';
-import TodoList from '@/components/TodoList.vue';
-import CategoryManager from '@/components/CategoryManager.vue';
-import type { Category } from '@/types';
+import type { Category } from '~/types';
 
 const {
   state,
@@ -96,19 +90,6 @@ const toggleCategoryManager = () => {
 </script>
 
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-#app {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #62d2fbff 0%, #1964cc 100%);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, sans-serif;
-}
-
 .app-header {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -169,18 +150,5 @@ const toggleCategoryManager = () => {
   .main-content {
     padding: 24px 16px;
   }
-}
-</style>
-
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, sans-serif;
-}
-
-* {
-  box-sizing: border-box;
 }
 </style>

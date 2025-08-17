@@ -73,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Category, FilterType } from '@/types';
+import type { Category, FilterType } from '~/types';
 
 interface Props {
   categories: Category[];
@@ -114,7 +114,6 @@ const filterOptions = [
   display: flex;
   gap: 8px;
 }
-
 
 .category-filter {
   width: 100%;

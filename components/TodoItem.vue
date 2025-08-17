@@ -14,7 +14,7 @@
     </button>
 
     <!-- 內容區域 -->
-    <div class="content" v-if="!isEditing">
+    <div class="content">
       <div class="title">{{ todo.title }}</div>
       <div v-if="todo.description" class="description">
         {{ todo.description }}
@@ -25,34 +25,6 @@
         </span>
         <span class="date">{{ formatDate(todo.createdAt) }}</span>
       </div>
-    </div>
-
-    <!-- 編輯模式 -->
-    <div v-else class="edit-form">
-      <input
-        ref="editInput"
-        v-model="editTitle"
-        @keyup.enter="saveEdit"
-        @keyup.escape="cancelEdit"
-        @blur="saveEdit"
-        class="edit-input"
-      />
-      <textarea
-        v-model="editDescription"
-        @keyup.escape="cancelEdit"
-        placeholder="描述"
-        class="edit-description"
-        rows="2"
-      ></textarea>
-      <select v-model="editCategory" class="edit-category">
-        <option
-          v-for="category in categories"
-          :key="category.id"
-          :value="category.id"
-        >
-          {{ category.name }}
-        </option>
-      </select>
     </div>
 
     <div class="actions">
@@ -87,7 +59,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { TodoItem, Category } from '@/types';
+import type { TodoItem, Category } from '~/types';
 
 interface Props {
   todo: TodoItem;
