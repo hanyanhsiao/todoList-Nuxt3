@@ -5,7 +5,7 @@
 ## 功能特色
 
 - 新增、刪除待辦事項 (透過 API)
-- 標記完成/未完成狀態 (透過 API)
+- 標記已完成/未完成狀態 (透過 API)
 - 按類別篩選待辦事項
 - 分類管理功能 (透過 API)
 - 搜尋功能
@@ -54,8 +54,6 @@ npm run api
 ```bash
 npm run dev
 ```
-
-啟動開發服務器，通常在 http://localhost:3000
 
 ### 構建項目
 
@@ -118,14 +116,12 @@ npm run generate
 
 - `GET /todos` - 獲取所有待辦事項
 - `POST /todos` - 創建新待辦事項
-- `PATCH /todos/:id` - 更新待辦事項
 - `DELETE /todos/:id` - 刪除待辦事項
 
 ### Category 相關
 
 - `GET /categories` - 獲取所有分類
 - `POST /categories` - 創建新分類
-- `PATCH /categories/:id` - 更新分類
 - `DELETE /categories/:id` - 刪除分類
 
 ## 資料結構
@@ -171,38 +167,12 @@ interface Category {
 - `layouts/` 目錄管理頁面布局
 - 預設使用 `default.vue` 布局
 
-### 4. SSR 支援
-
-- 內建伺服器端渲染支援
-- 更好的 SEO 和初始載入性能
-
-### 5. SCSS 架構
+### 4. SCSS 架構
 
 - **變數系統**：`_variables.scss` 定義了顏色、間距、字體等設計 token
 - **混合(Mixins)**：`_mixins.scss` 提供可重用的樣式模式
 - **響應式設計**：內建斷點混合，支援行動優先設計
 - **實用工具類**：預定義的間距、文字對齊等工具類
-
-#### SCSS 變數範例
-
-```scss
-// 顏色
-$colors: (
-  primary: #3b82f6,
-  secondary: #f3f4f6,
-  danger: #dc2626,
-  // ...
-);
-
-// 間距
-$spacing: (
-  xs: 4px,
-  sm: 8px,
-  md: 16px,
-  lg: 24px,
-  // ...
-);
-```
 
 #### 混合(Mixins)範例
 

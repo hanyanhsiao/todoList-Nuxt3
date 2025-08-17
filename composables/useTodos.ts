@@ -3,7 +3,6 @@ import { useI18n } from 'vue-i18n';
 import type { TodoItem, Category, FilterType, TodoState } from '~/types';
 
 export function useTodos() {
-  const { t } = useI18n();
   const api = useApi();
 
   const state = reactive<TodoState>({

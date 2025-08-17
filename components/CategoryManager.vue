@@ -73,9 +73,8 @@
         </div>
       </div>
     </div>
-
-    <!-- 編輯分類模態框 -->
-    <div v-if="editingCategory" class="modal-overlay" @click="cancelEdit">
+    <!-- 需求沒寫到要編輯先註解 -->
+    <!-- <div v-if="editingCategory" class="modal-overlay" @click="cancelEdit">
       <div class="modal-content" @click.stop>
         <h4>編輯分類</h4>
         <form @submit.prevent="saveEditCategory" class="edit-form">
@@ -108,7 +107,7 @@
           </div>
         </form>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -143,13 +142,10 @@ const editCategoryColor = ref('');
 
 const predefinedCategories = ['work', 'personal', 'study'];
 
-// 判斷是否為預定義分類並取得顯示名稱
 const getCategoryDisplayName = (category: Category) => {
   if (predefinedCategories.includes(category.id)) {
-    // 對於預定義分類，直接使用 category.id 作為翻譯鍵
     return t(category.id);
   }
-  // 對於用戶自定義分類，直接顯示 category.name
   return category.name;
 };
 
